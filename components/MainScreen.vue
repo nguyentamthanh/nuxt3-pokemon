@@ -1,11 +1,10 @@
 <template>
-    <div
-        class="w-full h-full absolute top-0 left-0 z-[2px] flex items-center flex-col bg-primaryDark text-primaryLight pt-10">
-        <h1 class="uppercase font-bold text-lg">POKEMON BY THANH KUN</h1>
-        <p class="font-semibold text-lg">
+    <div class="">
+        <h1 class="">POKEMON BY THANH KUN</h1>
+        <p class="">
             Select mode game to start game
         </p>
-        <div class="modes">
+        <div class="">
             <button @click="onStart(16)">
                 <span>4x4</span>
                 <span>Easy</span>
@@ -31,42 +30,6 @@ function onStart(totalOfBlocks) {
     emit("onStart", { totalOfBlocks });
 }
 </script>
-<style lang="css" scoped>
-.modes {
-    display: flex;
-    margin-top: 2rem;
-}
+<style lang="css" >
 
-.modes button {
-    font: var(--font);
-    width: 150px;
-    height: 150px;
-    background: transparent;
-    box-shadow: none;
-    border: 1px solid var(--light);
-    color: var(--light);
-    display: flex;
-    flex-direction: column;
-    border-radius: 1rem;
-    margin: 0 1rem;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-}
-
-.modes button:hover {
-    background-color: var(--light);
-    color: var(--dark);
-}
-
-.modes button span:first-child {
-    font-size: 2rem;
-}
-
-.modes button span:last-child {
-    display: block;
-    font-size: 1.25rem;
-    margin-top: 0.5rem;
-}
 </style>
