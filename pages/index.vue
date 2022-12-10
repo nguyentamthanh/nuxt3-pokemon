@@ -15,5 +15,6 @@ const time = ref(0)
 function onHandleBeforeStart(config) {
   console.log("🚀 ~ file: index.vue:16 ~ onHandleBeforeStart ~ config", config)
   statusMatch.value = 'match'
+  settings.value.totalOfBlocks = config.totalOfBlocks
 }
 </script>

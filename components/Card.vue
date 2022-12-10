@@ -1,18 +1,36 @@
 <template>
-    <div class="card mb-4 mr-4 inline-block">
-        <div class="card__inner">
-            <div class="card__face card__face--font">
+    <div class="card mb-4 mr-4 inline-block w-90px h-120px">
+        <div class="card__inner w-full h-full transform cursor-pointer relative" @click="onToggleFlibCard"
+            :class="{ 'is-flipped': isFlipped }">
+            <div class="card__face card__face--font absolute w-full h-full backface-hidden rounded-2xl p-4 shadow-lg">
                 <div class="card__content">front</div>
             </div>
-            <div class="card__face card__face--back">
+            <div class="card__face card__face--back absolute w-full h-full backface-hidden rounded-2xl p-4 shadow-lg">
                 <div class="card__content">back</div>
             </div>
         </div>
     </div>
 </template>
 <script setup>
+import { ref } from 'vue';
 
+const isFlipped = ref(false)
+function onToggleFlibCard() {
+    isFlipped.value = !isFlipped.value
+}
 </script>
 <style scoped lang="css">
+.card__inner {
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
 
-</style>
+.card__inner.is-flipped {
+    transform: rotateY(-180deg);
+}
+
+.card__face--back {
+    background-color: var(--light);
+    transform: rotateY(-180deg);
+}
+</style> 
