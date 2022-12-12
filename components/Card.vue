@@ -3,10 +3,11 @@
         <div class="card__inner w-full h-full transform cursor-pointer relative" @click="onToggleFlibCard"
             :class="{ 'is-flipped': isFlipped }">
             <div class="card__face card__face--front absolute w-full h-full backface-hidden rounded-2xl p-4 shadow-lg">
-                <div class="card__content">front</div>
+                <div class="card__content"></div>
             </div>
             <div class="card__face card__face--back absolute w-full h-full backface-hidden rounded-2xl p-4 shadow-lg">
-                <div class="card__content">back</div>
+                <div class="card__content" :style="{ backgroundImage: `${url}` }">
+                </div>
             </div>
         </div>
     </div>
@@ -14,6 +15,14 @@
 <script setup>
 import { ref } from 'vue';
 
+const url = ref(`../assets/images/${imgBackFaceUrl}`)
+const props = defineProps({
+    imgBackFaceUrl: String
+    // imgBackFaceUrl: {
+    //     type: String,
+    //     require: true
+    // }
+})
 const isFlipped = ref(false)
 function onToggleFlibCard() {
     isFlipped.value = !isFlipped.value
@@ -39,5 +48,13 @@ function onToggleFlibCard() {
 .card__face--back {
     background-color: var(--light);
     transform: rotateY(-180deg);
+}
+
+.card__face--back .card__content {
+    background-image: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
 }
 </style> 
