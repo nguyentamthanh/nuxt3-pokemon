@@ -2,9 +2,17 @@
 <template>
     <div>
         <h1>interacter</h1>
-        <Card />
+        <Card v-for="(card, index) in cardsContext" :key="index" />
     </div>
 </template>
 <script setup>
-
+const props = defineProps({
+    cardsContext: {
+        type: Array,
+        default: function () {
+            return []
+        }
+    }
+})
+console.log("🚀 ~ file: InteractScreen.vue:17 ~ props", props)
 </script>

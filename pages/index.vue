@@ -1,7 +1,7 @@
 <template>
   <div>
     <MainScreen v-if="statusMatch === 'default'" @onStart="onHandleBeforeStart"></MainScreen>
-    <InteractScreen v-if="statusMatch === 'match'"></InteractScreen>
+    <InteractScreen v-if="statusMatch === 'match'" :cardsContext="settings.cardsContext"></InteractScreen>
   </div>
 </template>
 <script setup>
@@ -14,12 +14,22 @@ const settings = ref({
 })
 const time = ref(0)
 function onHandleBeforeStart(config) {
-  statusMatch.value = 'match'
+
+
   settings.value.totalOfBlocks = config.totalOfBlocks
+
   const firstCards = Array.from({ length: settings.value.totalOfBlocks / 2 }, (_, i) => i + 1)
+
   const secondCards = [...firstCards]
+
   const cards = [...firstCards, ...secondCards]
+
   settings.value.cardsContext = shuffled(shuffled(shuffled(shuffled(cards))))
-  console.log("🚀 ~ file: index.vue:23 ~ onHandleBeforeStart ~ settings.value.cardsContext", settings.value.cardsContext)
+
+  settings.value.startedAt = new Date().getTime()
+
+
+  //data ready 
+  statusMatch.value = 'match'
 }
 </script>

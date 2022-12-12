@@ -6,6 +6,11 @@ export default defineConfig({
     exclude: ["node_modules", ".git"],
   },
   theme: {
+    extend: {
+      backgroundImage: {
+        faceFront: "url('../assets/images/icon_back.png')",
+      },
+    },
     colors: {
       primaryDark: "#212121",
       primaryLight: "#f3f3f3",
