@@ -22,7 +22,6 @@ const props = defineProps({
     },
   },
 });
-const hihi = ref(null);
 console.log("🚀 ~ file: InteractScreen.vue:26 ~ hihi", hihi);
 const showChild = () => {
   myChild.value.test();
