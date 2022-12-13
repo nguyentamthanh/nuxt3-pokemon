@@ -1,65 +1,67 @@
 <template>
-  <div class="card mb-4 mr-4 inline-block w-90px h-120px">
+  <div class="card mb-4 mr-4 inline-block w-100px h-140px">
     <div
-      class="card__inner w-full h-full transform cursor-pointer relative"
+      class="transition-transform duration-1000 w-full h-full transform cursor-pointer relative preserve-3d transition transform-[1]"
       @click="onToggleFlibCard"
-      :class="{ 'is-flipped': isFlipped }"
+      :class="{ '-rotate-y-180': isFlipped }"
     >
       <div
-        class="card__face card__face--front absolute w-full h-full backface-hidden rounded-2xl p-4 shadow-lg"
+        class="absolute w-full h-full backface-hidden rounded-2xl p-4 shadow-lg"
       >
-        <div class="card__content"></div>
+        <div class="w-full h-full flex justify-center items-center">
+          <img
+            class="w-60px h-60px"
+            src="../assets/images/icon_back.png"
+            alt=""
+          />
+        </div>
       </div>
       <div
-        class="card__face card__face--back absolute w-full h-full backface-hidden rounded-2xl p-4 shadow-lg"
+        class="-rotate-y-180 transform absolute w-full h-full backface-hidden rounded-2xl p-4 shadow-lg"
       >
-        <div class="card__content"></div>
+        <div class="w-full h-full flex justify-center items-center">
+          <img
+            class=""
+            :src="`/_nuxt/assets/images/${imgBackFaceUrl}`"
+            alt=""
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
 import { ref } from "vue";
-
 const props = defineProps({
-  // imgBackFaceUrl: {
-  //     type: String,
-  //     require: true
-  // }
+  imgBackFaceUrl: {
+    type: String,
+    require: true,
+  },
+  card: {
+    type: Object,
+  },
 });
 
+const emit = defineEmits(["onFlip"]);
 const isFlipped = ref(false);
 function onToggleFlibCard() {
   isFlipped.value = !isFlipped.value;
+  if (isFlipped.value) {
+    emit("onFlip", props.card);
+  }
+}
+function onFlibBack() {
+  // console.log("🚀 ~ file: Card.vue:59 ~ onFlibBack ~ card", card);
+  // setTimeout(() => {
+  //   isFlipped.value = false;
+  // }, 2000);
+  isFlipped.value = false;
+  console.log(
+    "🚀 ~ file: Card.vue:59 ~ onFlibBack ~ isFlipped.value",
+    isFlipped.value
+  );
+}
+function test() {
+  alert("sdahvfgvfas");
 }
 </script>
-<style scoped lang="css">
-.card__inner {
-  transition: transform 1s;
-  transform-style: preserve-3d;
-}
-
-.card__inner.is-flipped {
-  transform: rotateY(-180deg);
-}
-
-.card__face--front .card__content {
-  background: url("../assets/images/icon_back.png") no-repeat center;
-  background-size: 40px 60px;
-  height: 100%;
-  width: 100%;
-}
-
-.card__face--back {
-  background-color: var(--light);
-  transform: rotateY(-180deg);
-}
-
-.card__face--back .card__content {
-  background-image: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 100%;
-  width: 100%;
-}
-</style>
