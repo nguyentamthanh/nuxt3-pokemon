@@ -43,6 +43,9 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["onFlip"]);
+defineExpose({
+  onFlibBack,
+});
 const isFlipped = ref(false);
 function onToggleFlibCard() {
   isFlipped.value = !isFlipped.value;
@@ -51,15 +54,7 @@ function onToggleFlibCard() {
   }
 }
 function onFlibBack() {
-  // console.log("🚀 ~ file: Card.vue:59 ~ onFlibBack ~ card", card);
-  // setTimeout(() => {
-  //   isFlipped.value = false;
-  // }, 2000);
   isFlipped.value = false;
-  console.log(
-    "🚀 ~ file: Card.vue:59 ~ onFlibBack ~ isFlipped.value",
-    isFlipped.value
-  );
 }
 function test() {
   alert("sdahvfgvfas");
